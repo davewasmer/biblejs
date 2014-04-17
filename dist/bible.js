@@ -1,11 +1,11 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-require('coffee-script/register')
+!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.bible=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+_dereq_('coffee-script/register')
 module.exports = {
-  Reference: require('./lib/reference'),
-  Range: require('./lib/range'),
-  Books: require('./lib/books')
+  Reference: _dereq_('./lib/reference'),
+  Range: _dereq_('./lib/range'),
+  Books: _dereq_('./lib/books')
 };
-},{"./lib/books":2,"./lib/range":3,"./lib/reference":4,"coffee-script/register":5}],2:[function(require,module,exports){
+},{"./lib/books":2,"./lib/range":3,"./lib/reference":4,"coffee-script/register":5}],2:[function(_dereq_,module,exports){
 var ordinals;
 
 ordinals = function(number, names) {
@@ -235,11 +235,11 @@ module.exports = [
 ];
 
 
-},{}],3:[function(require,module,exports){
+},{}],3:[function(_dereq_,module,exports){
 var Range, Reference,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-Reference = require('./reference');
+Reference = _dereq_('./reference');
 
 Range = (function() {
   function Range(start, end) {
@@ -276,13 +276,13 @@ Range = (function() {
 module.exports = Range;
 
 
-},{"./reference":4}],4:[function(require,module,exports){
+},{"./reference":4}],4:[function(_dereq_,module,exports){
 var Range, Reference, books,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-books = require('./books');
+books = _dereq_('./books');
 
-Range = require('./range');
+Range = _dereq_('./range');
 
 Reference = (function() {
   function Reference(referenceString) {
@@ -485,6 +485,8 @@ Reference = (function() {
 module.exports = Reference;
 
 
-},{"./books":2,"./range":3}],5:[function(require,module,exports){
+},{"./books":2,"./range":3}],5:[function(_dereq_,module,exports){
 
-},{}]},{},[1]);
+},{}]},{},[1])
+(1)
+});;

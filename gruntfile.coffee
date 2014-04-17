@@ -21,8 +21,9 @@ module.exports = (grunt) ->
         transform: [ "coffeeify" ]
         ignore: [ require.resolve("coffee-script/register") ]
         browserifyOptions:
-          standalone: "bible"
           extensions: [ ".coffee" ]
+        bundleOptions:
+          standalone: "bible"
 
     bump:
       options:
