@@ -19,7 +19,7 @@ module.exports = (grunt) ->
         dest: "dist/bible.js"
       options:
         transform: [ "coffeeify" ]
-        ignore: [ "coffeescript/register" ]
+        ignore: [ require.resolve("coffee-script/register") ]
         browserifyOptions:
           standalone: "bible"
           extensions: [ ".coffee" ]
