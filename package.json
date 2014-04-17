@@ -1,6 +1,6 @@
 {
   "name": "biblejs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Normalize bible references, convert them to machine readable formats, query and manipulate them",
   "main": "index.js",
   "scripts": {
