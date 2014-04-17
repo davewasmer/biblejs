@@ -5,7 +5,7 @@
     "Dave Wasmer <davewasmer@gmail.com>"
   ],
   "description": "Normalize bible references, convert them to machine readable formats, query and manipulate them",
-  "main": "index.js",
+  "main": "dist/bible.js",
   "keywords": [
     "bible",
     "query",
