@@ -1,0 +1,20 @@
+{
+  "name": "bible",
+  "version": "0.0.1",
+  "authors": [
+    "Dave Wasmer <davewasmer@gmail.com>"
+  ],
+  "description": "Normalize bible references, convert them to machine readable formats, query and manipulate them",
+  "main": "index.js",
+  "keywords": [
+    "bible",
+    "query",
+    "math"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/davewasmer/biblejs",
+  "ignore": [
+    "**/*",
+    "!dist/*"
+  ]
+}
