@@ -9,7 +9,7 @@ module.exports = (grunt) ->
       bumpArg = ":#{bumpArg}" 
     else
       bumpArg = ""
-    grunt.task.run('build', "bump#{bumpArg}")
+    grunt.task.run('build', "bump#{bumpArg}", "publish")
 
   grunt.initConfig
 
