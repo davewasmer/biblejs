@@ -111,12 +111,18 @@ Returns the book id (i.e. the number of the book if you started from Genesis and
 
 # Lookups
 
-### Reference.bookIdFromName(id)
+### Reference.bookIdFromName(name)
 Returns the book id given a book name. Handles most common book abbreviations.
 
     Reference.bookIdFromName("Genesis") // 1
     Reference.bookIdFromName("Gen") // 1
     Reference.bookIdFromName("Exo") // 2
+
+### Reference.bookNameFromId(id)
+Returns the full book name given a book name.
+
+    Reference.bookIdFromName(1) // "Genesis"
+    Reference.bookIdFromName(2) // "Exodus"
 
 
 ### Reference.versesInBookId(id)

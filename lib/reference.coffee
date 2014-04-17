@@ -98,6 +98,10 @@ class Reference
         return i + 1
     return -1
 
+  # Given a book id, get the full length book name
+  @bookNameFromId: (id) ->
+    return books[i].names[0]
+
   # Create a Reference from a chapter id
   @fromChapterId: (chapterId) ->
     chaptersRemaining = chapterId
