@@ -121,8 +121,8 @@ Returns the book id given a book name. Handles most common book abbreviations.
 ### Reference.bookNameFromId(id)
 Returns the full book name given a book name.
 
-    Reference.bookIdFromName(1) // "Genesis"
-    Reference.bookIdFromName(2) // "Exodus"
+    Reference.bookNameFromId(1) // "Genesis"
+    Reference.bookNameFromId(2) // "Exodus"
 
 
 ### Reference.versesInBookId(id)
