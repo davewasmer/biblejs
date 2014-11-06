@@ -12,11 +12,11 @@ bible.js is a JavaScript package for both Node and the browser (via Bower) for h
 
 **node**
     
-    npm install --save bible
+    npm install --save biblejs
 
 **bower**
 
-    bower install --save bible
+    bower install --save biblejs
 
 *NOTE* the bower version is distributed with minified and unminified versions, and bundled via UMD to allow use via globals, AMD modules, etc.
 
