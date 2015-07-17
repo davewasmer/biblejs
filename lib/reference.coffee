@@ -60,20 +60,19 @@ class Reference
 
   # String formatting
   toString: ->
-    bookName = books[@book].names[0]
+    bookName = books[@book - 1].names[0]
     chapterNumber = @chapter
     verseNumber = if @verse? then ":" + @verse else ""
     return "#{bookName} #{chapterNumber}#{verseNumber}"
 
   # Get the verse id for this reference
   toVerseId: ->
-    count = Reference.versesUpToBookId(@book)
-    count += Reference.versesUpToChapterId()
+    count = Reference.versesUpToChapterId(@chapter)
     for i in [1...@book]
       count += Reference.versesInBookId(i)
     for i in [1...@chapter]
-      count += books[@book].verses[i - 1]
-    count += @verse if @verse?
+      count += books[@book - 1].verses[i - 1]
+    count += +@verse if @verse?
     return count
 
   # Get the chapter id for this reference
@@ -81,7 +80,7 @@ class Reference
     count = 0
     for i in [1...@book]
       count += books[i - 1].verses.length
-    count += @chapter
+    count += +@chapter
     return count
 
   # Get the book id for this reference
@@ -96,12 +95,12 @@ class Reference
   @bookIdFromName: (name) ->
     for book, i in books
       if name.toLowerCase() in (book.names.map (s) -> s.toLowerCase())
-        return i
+        return i + 1
     return -1
 
   # Given a book id, get the full length book name
   @bookNameFromId: (id) ->
-    return books[i].names[0]
+    return books[i-1].names[0]
 
   # Create a Reference from a chapter id
   @fromChapterId: (chapterId) ->
@@ -132,11 +131,20 @@ class Reference
 
   # Get the number of verses in the given book id
   @versesInBookId: (bookId) ->
-    return books[bookId].verses.reduce((a, b) -> a + b)
+    return books[bookId-1].verses.reduce (a, b) -> a + b
+
+  # Get the number of verses in the given chapter id
+  @versesInChapterId: (chapterId) ->
+    chapter = 1
+    for book in books
+      for verse in book.verses
+        return verse if chapter is chapterId
+        chapter += 1
+    return -1
 
   # Get the number of chapters in the given book id
   @chaptersInBookId: (bookId) ->
-    return books[bookId].verses.length
+    return books[bookId-1].verses.length
 
   # Get the number of verses up to the start of the given book id
   @versesUpToBookId: (bookId) ->
@@ -154,6 +162,7 @@ class Reference
         count += verse
         chapter += 1
         return count if chapter is chapterId
+    return 0
 
   # Get the number of chapters up to the start of the given book id
   @chaptersUpToBookId: (bookId) ->
@@ -161,6 +170,7 @@ class Reference
     for i in [1...bookId]
       count += Reference.chaptersInBookId(i)
     return count
+    return 0
 
 
 module.exports = Reference

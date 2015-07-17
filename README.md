@@ -119,7 +119,7 @@ Returns the book id given a book name. Handles most common book abbreviations.
     Reference.bookIdFromName("Exo") // 2
 
 ### Reference.bookNameFromId(id)
-Returns the full book name given a book name.
+Returns the full book name given a book id.
 
     Reference.bookNameFromId(1) // "Genesis"
     Reference.bookNameFromId(2) // "Exodus"
