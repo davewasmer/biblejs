@@ -22,6 +22,7 @@ class Reference
       return
 
     # Otherwise, must be a string
+    referenceString = referenceString.replace(/\./g,'')
     if typeof referenceString isnt 'string'
       throw new Error("Unable to parse #{referenceString}: must be a string")
     if Range.isRange(referenceString)
@@ -61,8 +62,8 @@ class Reference
   toString: ->
     bookName = books[@book].names[0]
     chapterNumber = @chapter
-    verseNumber = @verse
-    return "#{bookName} #{chapterNumber}:#{verseNumber}"
+    verseNumber = if @verse? then ":" + @verse else ""
+    return "#{bookName} #{chapterNumber}#{verseNumber}"
 
   # Get the verse id for this reference
   toVerseId: ->
@@ -94,8 +95,8 @@ class Reference
   # Given a string of a book name (shortened or full length), get the book id
   @bookIdFromName: (name) ->
     for book, i in books
-      if name in book.names
-        return i + 1
+      if name.toLowerCase() in (book.names.map (s) -> s.toLowerCase())
+        return i
     return -1
 
   # Given a book id, get the full length book name
