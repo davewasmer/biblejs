@@ -38,7 +38,9 @@ class Reference
 
     # Split on ":" for chapter and verse. If it's a chapter reference
     # (e.g. John 1) then @verse is undefined
-    [@chapter, @verse] = chapterAndVerse.split(':')
+    parts = chapterAndVerse.split(':')
+    @chapter = +parts[0]
+    @verse = if parts.length is 1 then -1 else +parts[1]
 
 
   # Is this a reference to a chapter as a whole, or a specific verse?
@@ -62,7 +64,7 @@ class Reference
   toString: ->
     bookName = books[@book - 1].names[0]
     chapterNumber = @chapter
-    verseNumber = if @verse? then ":" + @verse else ""
+    verseNumber = if @verse > -1 then ":" + @verse else ""
     return "#{bookName} #{chapterNumber}#{verseNumber}"
 
   # Get the verse id for this reference
