@@ -38,9 +38,9 @@ class Reference
 
     # Split on ":" for chapter and verse. If it's a chapter reference
     # (e.g. John 1) then @verse is undefined
-    parts = chapterAndVerse.split(':')
-    @chapter = +parts[0]
-    @verse = if parts.length is 1 then -1 else +parts[1]
+    [ @chapter, @verse ] = chapterAndVerse.split(':')
+    @chapter = Number(@chapter)
+    @verse = if @verse then Number(@verse) else null
 
 
   # Is this a reference to a chapter as a whole, or a specific verse?
@@ -63,18 +63,18 @@ class Reference
   # String formatting
   toString: ->
     bookName = books[@book - 1].names[0]
-    chapterNumber = @chapter
-    verseNumber = if @verse > -1 then ":" + @verse else ""
-    return "#{bookName} #{chapterNumber}#{verseNumber}"
-
+    stringified = bookName + " " + @chapter
+    stringified += ":" + @verse if @verse
+    return stringified
+    
   # Get the verse id for this reference
   toVerseId: ->
-    count = Reference.versesUpToChapterId(@chapter)
+    count = 0
     for i in [1...@book]
       count += Reference.versesInBookId(i)
     for i in [1...@chapter]
-      count += books[@book - 1].verses[i - 1]
-    count += +@verse if @verse?
+      count += books[@book - 1].verses[i]
+    count += @verse if @verse?
     return count
 
   # Get the chapter id for this reference
@@ -82,7 +82,7 @@ class Reference
     count = 0
     for i in [1...@book]
       count += books[i - 1].verses.length
-    count += +@chapter
+    count += @chapter
     return count
 
   # Get the book id for this reference
@@ -108,11 +108,11 @@ class Reference
   @fromChapterId: (chapterId) ->
     chaptersRemaining = chapterId
     for book, i in books
-      chaptersInNextBook = books[i + 1].verses.length
+      chaptersInNextBook = books[i].verses.length
       if chaptersRemaining - chaptersInNextBook > 0
         chaptersRemaining -= chaptersInNextBook
       else
-        new Reference({book: i, chapter: chaptersRemaining})
+        return new Reference({book: i + 1, chapter: chaptersRemaining})
 
   # Create a Reference from a verse id
   @fromVerseId: (verseId) ->
@@ -129,7 +129,7 @@ class Reference
           if versesRemaining - versesInNextChapter > 0
             versesRemaining -= versesInNextChapter
           else
-            new Reference({book: i, chapter: j, verse: versesRemaining})
+            return new Reference({book: i, chapter: j, verse: versesRemaining})
 
   # Get the number of verses in the given book id
   @versesInBookId: (bookId) ->
@@ -137,12 +137,11 @@ class Reference
 
   # Get the number of verses in the given chapter id
   @versesInChapterId: (chapterId) ->
-    chapter = 1
     for book in books
-      for verse in book.verses
-        return verse if chapter is chapterId
-        chapter += 1
-    return -1
+      if chapterId > book.verses.length
+        chapterId -= book.verses.length
+      else
+        return book.verses[chapterId - 1]
 
   # Get the number of chapters in the given book id
   @chaptersInBookId: (bookId) ->
@@ -172,7 +171,6 @@ class Reference
     for i in [1...bookId]
       count += Reference.chaptersInBookId(i)
     return count
-    return 0
 
 
 module.exports = Reference
