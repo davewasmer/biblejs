@@ -4,7 +4,7 @@ bible.js is a JavaScript package for both Node and the browser (via Bower) for h
 
   * parse textual references into a standard, index based format
   * convert a textual reference to an absolute verse number
-  * convert an absolute verse number to it's textual reference
+  * convert an absolute verse number to its textual reference
   * handle chapter references
   * handle ranges (e.g. John 3:1-16) (WIP)
 
@@ -27,7 +27,7 @@ bible.js is a JavaScript package for both Node and the browser (via Bower) for h
 ### new Reference(referenceString)
 Parse a textual reference
 
-    var Reference = require('bible').Reference;
+    var Reference = require('biblejs').Reference;
     var refString = "John 3:16";
     
     var ref = new Reference(refString);
@@ -37,7 +37,7 @@ Parse a textual reference
 ### Reference.fromVerseId(id)
 Parse a verse id into a reference
 
-    var Reference = require('bible').Reference;
+    var Reference = require('biblejs').Reference;
     var verseId = 1;
     
     var ref = Reference.fromVerseId(verseId);
@@ -47,7 +47,7 @@ Parse a verse id into a reference
 ### Reference.fromVerseId(id)
 Parse a chapter id into a reference.
 
-    var Reference = require('bible').Reference;
+    var Reference = require('biblejs').Reference;
     var chapterId = 1;
     
     var ref = Reference.fromChapterId(chapterId);
@@ -119,7 +119,7 @@ Returns the book id given a book name. Handles most common book abbreviations.
     Reference.bookIdFromName("Exo") // 2
 
 ### Reference.bookNameFromId(id)
-Returns the full book name given a book name.
+Returns the full book name given a book id.
 
     Reference.bookNameFromId(1) // "Genesis"
     Reference.bookNameFromId(2) // "Exodus"
@@ -132,6 +132,13 @@ Returns the number of verses in the given book id.
     Reference.versesInBookId(1) // 1213
 
 
+### Reference.versesInChapterId(id)
+Returns the number of verses in the given chapter id
+
+    // Genesis 1 has 31 verses
+    Reference.versesInChapterId(1) // 31
+
+
 ### Reference.chaptersInBookId(id)
 Returns the number of chapters in the given book id.
 
@@ -142,7 +149,7 @@ Returns the number of chapters in the given book id.
 ### Reference.versesUpToBookId(id)
 Returns the number of verses in all the books prior to the given book id.
 
-    // All the books before Leveticus (Genesis and Exodus) have 2,072 verses
+    // All the books before Leviticus (Genesis and Exodus) have 2,072 verses
     Reference.versesUpToBookId(3) // 2072
 
 
