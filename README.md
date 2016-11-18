@@ -32,26 +32,27 @@ Parse a textual reference
     
     var ref = new Reference(refString);
     // returns a Reference instance for "John 3:16"
-
+    // var ref = new Reference(123); will throw an error
 
 ### Reference.fromVerseId(id)
-Parse a verse id into a reference
+Parse a verse id into a reference (beginning from 1)
 
     var Reference = require('biblejs').Reference;
     var verseId = 1;
     
     var ref = Reference.fromVerseId(verseId);
     // returns a Reference instance for "Genesis 1:1"
+    // var ref = Reference.fromVerseId(-1); will throw an error
 
-
-### Reference.fromVerseId(id)
-Parse a chapter id into a reference.
+### Reference.fromChapterId(id)
+Parse a chapter id into a reference (beginning from 1)
 
     var Reference = require('biblejs').Reference;
     var chapterId = 1;
     
     var ref = Reference.fromChapterId(chapterId);
     // returns a Reference instance for "Genesis 1"
+    // var ref = Reference.fromChapterId(0); will throw an error
 
 
 ## Instance Methods
@@ -128,8 +129,8 @@ Returns the full book name given a book id.
 ### Reference.versesInBookId(id)
 Returns the number of verses in the given book id.
     
-    // Genesis has 1,213 verses
-    Reference.versesInBookId(1) // 1213
+    // Genesis has 1,533 verses
+    Reference.versesInBookId(1) // 1533
 
 
 ### Reference.versesInChapterId(id)
@@ -142,15 +143,15 @@ Returns the number of verses in the given chapter id
 ### Reference.chaptersInBookId(id)
 Returns the number of chapters in the given book id.
 
-    // Genesis has 40 chapters
-    Reference.chaptersInBookId(1) // 40
+    // Genesis has 50 chapters
+    Reference.chaptersInBookId(1) // 50
 
 
 ### Reference.versesUpToBookId(id)
 Returns the number of verses in all the books prior to the given book id.
 
-    // All the books before Leviticus (Genesis and Exodus) have 2,072 verses
-    Reference.versesUpToBookId(3) // 2072
+    // All the books before Leviticus (Genesis and Exodus) have 2,746 verses
+    Reference.versesUpToBookId(3) // 2746
 
 
 ### Reference.versesUpToChapterId(id)
@@ -163,7 +164,7 @@ Returns the number of verses in all the chapters prior to the given chapter id.
 ### Reference.chaptersUpToBookId(id)
 Returns the number of chapters in all the books prior to the given book id.
 
-    // All the books before Leveticus (Genesis and Exodus) have 67 chapters
-    Reference.chaptersUpToBookId(3) // 67
+    // All the books before Leviticus (Genesis and Exodus) have 90 chapters
+    Reference.chaptersUpToBookId(3) // 90
 
 
