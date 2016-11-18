@@ -191,13 +191,4 @@ describe('Reference', function() {
 	    });
 	});
 
-    
-
-/* TODO
-    it('should throw an error from invalid range string construction', function() {
-        var refFn = function () {console.log(new Reference('John 54:21'))};
-        expect(refFn).to.throw(Error);
-    });
-*/
-
 });
