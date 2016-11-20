@@ -73,6 +73,8 @@ class Reference
     
   # Get the verse id for this reference
   toVerseId: ->
+    if !@verse
+      throw new Error("This Reference has no verse")
     count = 0
     for i in [1...@book]
       count += Reference.versesInBookId(i)

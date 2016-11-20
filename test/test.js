@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var Reference = require('../index').Reference;
+var Reference = require('../lib/index').Reference;
 
 var validString = 'John 3:16'
 
@@ -86,6 +86,11 @@ describe('Reference', function() {
 		it('should return the verse id', function() {
 	        var ref = new Reference('Genesis 1:16');
 	        expect(ref.toVerseId()).to.equal(16);
+	    });
+
+	    it('should throw an error if the Reference has no verse', function() {
+	        var refFn = function () {return new Reference('Genesis 1').toVerseId()};
+	        expect(refFn).to.throw(Error);
 	    });
 	});
 
