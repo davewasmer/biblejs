@@ -21,12 +21,14 @@ class Reference
       @verse = referenceString.verse
       return
 
-    # Otherwise, must be a string
-    referenceString = referenceString.replace(/\./g,'')
     if typeof referenceString isnt 'string'
       throw new Error("Unable to parse #{referenceString}: must be a string")
     if Range.isRange(referenceString)
       throw new Error("Unable to parse #{referenceString}: it appears to be a range, not a single reference. Use new Range(start, end) instead.")
+
+    # Otherwise, must be a string
+    referenceString = referenceString.replace(/\./g,'')
+    
 
     # Match up to last letter - thats the book. Everything else is the chapter/verse
     [@src, bookName, chapterAndVerse] = referenceString.match(/(.+[A-Za-z])\s+(.+)/)
@@ -51,10 +53,12 @@ class Reference
   # verse in it's chapter
   startOf: (unit) ->
     switch unit
-      when "chapter" then @verse = 1
+      when "chapter" 
+        @verse = 1
       when "book"
         @verse = 1
         @chapter = 1
+    return this
 
   # Clone to avoid operations by reference to your existing refs
   clone: ->
@@ -69,6 +73,8 @@ class Reference
     
   # Get the verse id for this reference
   toVerseId: ->
+    if !@verse
+      throw new Error("This Reference has no verse")
     count = 0
     for i in [1...@book]
       count += Reference.versesInBookId(i)
@@ -98,14 +104,18 @@ class Reference
     for book, i in books
       if name.toLowerCase() in (book.names.map (s) -> s.toLowerCase())
         return i + 1
-    return -1
+    throw new Error("Unable to find book named \'#{name}\'")
 
   # Given a book id, get the full length book name
   @bookNameFromId: (id) ->
-    return books[i-1].names[0]
+    if id < 1 || id > 66
+      throw new Error("Unable to find book id \'#{id}\'")
+    return books[id-1].names[0]
 
   # Create a Reference from a chapter id
   @fromChapterId: (chapterId) ->
+    if chapterId < 1 
+      throw new Error("Unable to parse chapterId #{chapterId}: must be greater than 0")
     chaptersRemaining = chapterId
     for book, i in books
       chaptersInNextBook = books[i].verses.length
@@ -116,6 +126,8 @@ class Reference
 
   # Create a Reference from a verse id
   @fromVerseId: (verseId) ->
+    if verseId < 1 
+      throw new Error("Unable to parse verseId #{verseId}: must be greater than 0")
     versesRemaining = verseId
     # Count off each book
     for book, i in books
@@ -124,19 +136,23 @@ class Reference
         versesRemaining -= versesInNextBook
       else
         # Count off each chapter in remainder book
-        for j in [0...Reference.chaptersInBookId(i) - 1]
+        for j in [0...Reference.chaptersInBookId(i + 1) - 1]
           versesInNextChapter = book.verses[j]
           if versesRemaining - versesInNextChapter > 0
             versesRemaining -= versesInNextChapter
           else
-            return new Reference({book: i, chapter: j, verse: versesRemaining})
+            return new Reference({book: i + 1, chapter: j + 1, verse: versesRemaining})
 
   # Get the number of verses in the given book id
   @versesInBookId: (bookId) ->
+    if bookId < 1 || bookId > 66
+      throw new Error("Unable to parse bookId #{bookId}: must be greater than 0")
     return books[bookId-1].verses.reduce (a, b) -> a + b
 
   # Get the number of verses in the given chapter id
   @versesInChapterId: (chapterId) ->
+    if chapterId < 1 || chapterId > 1189 
+      throw new Error("Unable to parse chapterId #{chapterId}: must be greater than 0 and less than 1189")
     for book in books
       if chapterId > book.verses.length
         chapterId -= book.verses.length
@@ -145,10 +161,14 @@ class Reference
 
   # Get the number of chapters in the given book id
   @chaptersInBookId: (bookId) ->
+    if bookId < 1 || bookId > 66
+      throw new Error("Unable to parse bookId #{bookId}: must be greater than 0")
     return books[bookId-1].verses.length
 
   # Get the number of verses up to the start of the given book id
   @versesUpToBookId: (bookId) ->
+    if bookId < 1 || bookId > 66
+      throw new Error("Unable to parse bookId #{bookId}: must be greater than 0")
     count = 0
     for i in [1...bookId]
       count += Reference.versesInBookId(i)
@@ -156,6 +176,8 @@ class Reference
 
   # Get the number of verses up to the start of the given chapter id
   @versesUpToChapterId: (chapterId) ->
+    if chapterId < 1 || chapterId > 1189 
+      throw new Error("Unable to parse chapterId #{chapterId}: must be greater than 0 and less than 1189")
     count = 0
     chapter = 1
     for book in books
@@ -167,6 +189,8 @@ class Reference
 
   # Get the number of chapters up to the start of the given book id
   @chaptersUpToBookId: (bookId) ->
+    if bookId < 1 || bookId > 66
+      throw new Error("Unable to parse bookId #{bookId}: must be greater than 0")
     count = 0
     for i in [1...bookId]
       count += Reference.chaptersInBookId(i)

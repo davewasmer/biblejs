@@ -1,11 +1,4 @@
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.bible=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
-_dereq_('coffee-script/register')
-module.exports = {
-  Reference: _dereq_('./lib/reference'),
-  Range: _dereq_('./lib/range'),
-  Books: _dereq_('./lib/books')
-};
-},{"./lib/books":2,"./lib/range":3,"./lib/reference":4,"coffee-script/register":5}],2:[function(_dereq_,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.bible=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 var ordinals;
 
 ordinals = function(number, names) {
@@ -70,10 +63,10 @@ module.exports = [
     names: ordinals(2, 'Kings Ki King Kin Kngs'.split(' ')),
     verses: [18, 25, 27, 44, 27, 33, 20, 29, 37, 36, 21, 21, 25, 29, 38, 20, 41, 37, 37, 21, 26, 20, 37, 20, 30]
   }, {
-    names: ordinals(1, 'Chronicles Ch Chr'.split(' ')),
+    names: ordinals(1, 'Chronicles Ch Chr Chron'.split(' ')),
     verses: [54, 55, 24, 43, 26, 81, 40, 40, 44, 14, 47, 40, 14, 17, 29, 43, 27, 17, 19, 8, 30, 19, 32, 31, 31, 32, 34, 21, 30]
   }, {
-    names: ordinals(2, 'Chronicles Ch Chr'.split(' ')),
+    names: ordinals(2, 'Chronicles Ch Chr Chron'.split(' ')),
     verses: [17, 18, 17, 22, 14, 42, 22, 18, 31, 19, 23, 16, 22, 15, 19, 14, 19, 34, 11, 37, 20, 12, 21, 27, 28, 23, 9, 27, 36, 27, 21, 33, 25, 33, 27, 23]
   }, {
     names: 'Ezra Ez Ezr'.split(' '),
@@ -88,7 +81,7 @@ module.exports = [
     names: 'Job Jb Job'.split(' '),
     verses: [22, 13, 26, 21, 27, 30, 21, 22, 35, 22, 20, 25, 28, 22, 35, 22, 16, 21, 29, 29, 34, 30, 17, 25, 6, 14, 23, 28, 25, 31, 40, 22, 33, 37, 16, 33, 24, 41, 30, 24, 34, 17]
   }, {
-    names: 'Psalm Ps Psa Pss'.split(' '),
+    names: 'Psalm Ps Psa Pss Psalms'.split(' '),
     verses: [6, 12, 8, 8, 12, 10, 17, 9, 20, 18, 7, 8, 6, 7, 5, 11, 15, 50, 14, 9, 13, 31, 6, 10, 22, 12, 14, 9, 11, 12, 24, 11, 22, 22, 28, 12, 40, 22, 13, 17, 13, 11, 5, 26, 17, 11, 9, 14, 20, 23, 19, 9, 6, 7, 23, 13, 11, 11, 17, 12, 8, 12, 11, 10, 13, 20, 7, 35, 36, 5, 24, 20, 28, 23, 10, 12, 20, 72, 13, 19, 16, 8, 18, 12, 13, 17, 7, 18, 52, 17, 16, 15, 5, 23, 11, 13, 12, 9, 9, 5, 8, 28, 22, 35, 45, 48, 43, 13, 31, 7, 10, 10, 9, 8, 18, 19, 2, 29, 176, 7, 8, 9, 4, 8, 5, 6, 5, 6, 8, 8, 3, 18, 3, 3, 21, 26, 9, 8, 24, 13, 10, 7, 12, 15, 21, 10, 20, 14, 9, 6]
   }, {
     names: 'Proverbs Pr Prov Pro'.split(' '),
@@ -230,12 +223,19 @@ module.exports = [
     verses: [25]
   }, {
     names: 'Revelation Re Rev Rvltn'.split(' '),
-    verses: [20, 29, 22, 11, 14, 17, 17, 13, 21, 11, 19, 17, 18, 20, 8, 21, 18, 24, 21, 15, 27, 20]
+    verses: [20, 29, 22, 11, 14, 17, 17, 13, 21, 11, 19, 17, 18, 20, 8, 21, 18, 24, 21, 15, 27, 21]
   }
 ];
 
 
-},{}],3:[function(_dereq_,module,exports){
+},{}],2:[function(_dereq_,module,exports){
+_dereq_('coffee-script/register')
+module.exports = {
+  Reference: _dereq_('./reference'),
+  Range: _dereq_('./range'),
+  Books: _dereq_('./books')
+};
+},{"./books":1,"./range":3,"./reference":4,"coffee-script/register":5}],3:[function(_dereq_,module,exports){
 var Range, Reference,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -302,12 +302,15 @@ Reference = (function() {
     if (Range.isRange(referenceString)) {
       throw new Error("Unable to parse " + referenceString + ": it appears to be a range, not a single reference. Use new Range(start, end) instead.");
     }
+    referenceString = referenceString.replace(/\./g, '');
     _ref = referenceString.match(/(.+[A-Za-z])\s+(.+)/), this.src = _ref[0], bookName = _ref[1], chapterAndVerse = _ref[2];
     this.book = Reference.bookIdFromName(bookName);
     if (this.book === -1) {
       throw new Error("Unable to parse " + referenceString + ": book name (" + bookName + ") not recognized");
     }
     _ref1 = chapterAndVerse.split(':'), this.chapter = _ref1[0], this.verse = _ref1[1];
+    this.chapter = Number(this.chapter);
+    this.verse = this.verse ? Number(this.verse) : null;
   }
 
   Reference.prototype.isChapter = function() {
@@ -317,11 +320,13 @@ Reference = (function() {
   Reference.prototype.startOf = function(unit) {
     switch (unit) {
       case "chapter":
-        return this.verse = 1;
+        this.verse = 1;
+        break;
       case "book":
         this.verse = 1;
-        return this.chapter = 1;
+        this.chapter = 1;
     }
+    return this;
   };
 
   Reference.prototype.clone = function() {
@@ -329,22 +334,26 @@ Reference = (function() {
   };
 
   Reference.prototype.toString = function() {
-    var bookName, chapterNumber, verseNumber;
-    bookName = books[this.book].names[0];
-    chapterNumber = this.chapter;
-    verseNumber = this.verse;
-    return "" + bookName + " " + chapterNumber + ":" + verseNumber;
+    var bookName, stringified;
+    bookName = books[this.book - 1].names[0];
+    stringified = bookName + " " + this.chapter;
+    if (this.verse) {
+      stringified += ":" + this.verse;
+    }
+    return stringified;
   };
 
   Reference.prototype.toVerseId = function() {
     var count, i, _i, _j, _ref, _ref1;
-    count = Reference.versesUpToBookId(this.book);
-    count += Reference.versesUpToChapterId();
+    if (!this.verse) {
+      throw new Error("This Reference has no verse");
+    }
+    count = 0;
     for (i = _i = 1, _ref = this.book; 1 <= _ref ? _i < _ref : _i > _ref; i = 1 <= _ref ? ++_i : --_i) {
       count += Reference.versesInBookId(i);
     }
     for (i = _j = 1, _ref1 = this.chapter; 1 <= _ref1 ? _j < _ref1 : _j > _ref1; i = 1 <= _ref1 ? ++_j : --_j) {
-      count += books[this.book].verses[i - 1];
+      count += books[this.book - 1].verses[i];
     }
     if (this.verse != null) {
       count += this.verse;
@@ -371,83 +380,109 @@ Reference = (function() {
   };
 
   Reference.bookIdFromName = function(name) {
-    var book, i, _i, _len;
+    var book, i, _i, _len, _ref;
     for (i = _i = 0, _len = books.length; _i < _len; i = ++_i) {
       book = books[i];
-      if (__indexOf.call(book.names, name) >= 0) {
+      if (_ref = name.toLowerCase(), __indexOf.call(book.names.map(function(s) {
+        return s.toLowerCase();
+      }), _ref) >= 0) {
         return i + 1;
       }
     }
-    return -1;
+    throw new Error("Unable to find book named \'" + name + "\'");
   };
 
   Reference.bookNameFromId = function(id) {
-    return books[i].names[0];
+    if (id < 1 || id > 66) {
+      throw new Error("Unable to find book id \'" + id + "\'");
+    }
+    return books[id - 1].names[0];
   };
 
   Reference.fromChapterId = function(chapterId) {
-    var book, chaptersInNextBook, chaptersRemaining, i, _i, _len, _results;
+    var book, chaptersInNextBook, chaptersRemaining, i, _i, _len;
+    if (chapterId < 1) {
+      throw new Error("Unable to parse chapterId " + chapterId + ": must be greater than 0");
+    }
     chaptersRemaining = chapterId;
-    _results = [];
     for (i = _i = 0, _len = books.length; _i < _len; i = ++_i) {
       book = books[i];
-      chaptersInNextBook = books[i + 1].verses.length;
+      chaptersInNextBook = books[i].verses.length;
       if (chaptersRemaining - chaptersInNextBook > 0) {
-        _results.push(chaptersRemaining -= chaptersInNextBook);
+        chaptersRemaining -= chaptersInNextBook;
       } else {
-        _results.push(new Reference({
-          book: i,
+        return new Reference({
+          book: i + 1,
           chapter: chaptersRemaining
-        }));
+        });
       }
     }
-    return _results;
   };
 
   Reference.fromVerseId = function(verseId) {
-    var book, i, j, versesInNextBook, versesInNextChapter, versesRemaining, _i, _len, _results;
+    var book, i, j, versesInNextBook, versesInNextChapter, versesRemaining, _i, _j, _len, _ref;
+    if (verseId < 1) {
+      throw new Error("Unable to parse verseId " + verseId + ": must be greater than 0");
+    }
     versesRemaining = verseId;
-    _results = [];
     for (i = _i = 0, _len = books.length; _i < _len; i = ++_i) {
       book = books[i];
       versesInNextBook = Reference.versesInBookId(i + 2);
       if (versesRemaining - versesInNextBook > 0) {
-        _results.push(versesRemaining -= versesInNextBook);
+        versesRemaining -= versesInNextBook;
       } else {
-        _results.push((function() {
-          var _j, _ref, _results1;
-          _results1 = [];
-          for (j = _j = 0, _ref = Reference.chaptersInBookId(i) - 1; 0 <= _ref ? _j < _ref : _j > _ref; j = 0 <= _ref ? ++_j : --_j) {
-            versesInNextChapter = book.verses[j];
-            if (versesRemaining - versesInNextChapter > 0) {
-              _results1.push(versesRemaining -= versesInNextChapter);
-            } else {
-              _results1.push(new Reference({
-                book: i,
-                chapter: j,
-                verse: versesRemaining
-              }));
-            }
+        for (j = _j = 0, _ref = Reference.chaptersInBookId(i + 1) - 1; 0 <= _ref ? _j < _ref : _j > _ref; j = 0 <= _ref ? ++_j : --_j) {
+          versesInNextChapter = book.verses[j];
+          if (versesRemaining - versesInNextChapter > 0) {
+            versesRemaining -= versesInNextChapter;
+          } else {
+            return new Reference({
+              book: i + 1,
+              chapter: j + 1,
+              verse: versesRemaining
+            });
           }
-          return _results1;
-        })());
+        }
       }
     }
-    return _results;
   };
 
   Reference.versesInBookId = function(bookId) {
-    return books[bookId].verses.reduce(function(a, b) {
+    if (bookId < 1 || bookId > 66) {
+      throw new Error("Unable to parse bookId " + bookId + ": must be greater than 0");
+    }
+    return books[bookId - 1].verses.reduce(function(a, b) {
       return a + b;
     });
   };
 
+  Reference.versesInChapterId = function(chapterId) {
+    var book, _i, _len;
+    if (chapterId < 1 || chapterId > 1189) {
+      throw new Error("Unable to parse chapterId " + chapterId + ": must be greater than 0 and less than 1189");
+    }
+    for (_i = 0, _len = books.length; _i < _len; _i++) {
+      book = books[_i];
+      if (chapterId > book.verses.length) {
+        chapterId -= book.verses.length;
+      } else {
+        return book.verses[chapterId - 1];
+      }
+    }
+  };
+
   Reference.chaptersInBookId = function(bookId) {
-    return books[bookId].verses.length;
+    if (bookId < 1 || bookId > 66) {
+      throw new Error("Unable to parse bookId " + bookId + ": must be greater than 0");
+    }
+    return books[bookId - 1].verses.length;
   };
 
   Reference.versesUpToBookId = function(bookId) {
     var count, i, _i;
+    if (bookId < 1 || bookId > 66) {
+      throw new Error("Unable to parse bookId " + bookId + ": must be greater than 0");
+    }
     count = 0;
     for (i = _i = 1; 1 <= bookId ? _i < bookId : _i > bookId; i = 1 <= bookId ? ++_i : --_i) {
       count += Reference.versesInBookId(i);
@@ -457,6 +492,9 @@ Reference = (function() {
 
   Reference.versesUpToChapterId = function(chapterId) {
     var book, chapter, count, verse, _i, _j, _len, _len1, _ref;
+    if (chapterId < 1 || chapterId > 1189) {
+      throw new Error("Unable to parse chapterId " + chapterId + ": must be greater than 0 and less than 1189");
+    }
     count = 0;
     chapter = 1;
     for (_i = 0, _len = books.length; _i < _len; _i++) {
@@ -471,10 +509,14 @@ Reference = (function() {
         }
       }
     }
+    return 0;
   };
 
   Reference.chaptersUpToBookId = function(bookId) {
     var count, i, _i;
+    if (bookId < 1 || bookId > 66) {
+      throw new Error("Unable to parse bookId " + bookId + ": must be greater than 0");
+    }
     count = 0;
     for (i = _i = 1; 1 <= bookId ? _i < bookId : _i > bookId; i = 1 <= bookId ? ++_i : --_i) {
       count += Reference.chaptersInBookId(i);
@@ -489,8 +531,8 @@ Reference = (function() {
 module.exports = Reference;
 
 
-},{"./books":2,"./range":3}],5:[function(_dereq_,module,exports){
+},{"./books":1,"./range":3}],5:[function(_dereq_,module,exports){
 
-},{}]},{},[1])
-(1)
-});;
+},{}]},{},[2])
+(2)
+});

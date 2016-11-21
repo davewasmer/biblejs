@@ -2,7 +2,7 @@
   "name": "biblejs",
   "version": "0.0.8",
   "description": "Normalize bible references, convert them to machine readable formats, query and manipulate them",
-  "main": "index.js",
+  "main": "dist/bible.js",
   "scripts": {
     "test": "mocha"
   },
@@ -22,14 +22,16 @@
   },
   "homepage": "https://github.com/davewasmer/biblejs",
   "dependencies": {
-    "coffee-script": "^1.7.1"
   },
   "devDependencies": {
-    "coffeeify": "^0.6.0",
     "browserify": "^3.41.0",
+    "chai": "^3.5.0",
+    "coffeeify": "^0.6.0",
+    "coffee-script": "^1.7.1",
     "grunt": "^0.4.4",
     "grunt-browserify": "^2.0.7",
     "grunt-bump": "0.0.13",
-    "grunt-npm": "0.0.2"
+    "grunt-npm": "0.0.2",
+    "mocha": "^3.1.2"
   }
 }
