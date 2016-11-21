@@ -330,7 +330,7 @@ Reference = (function() {
 
   Reference.prototype.toString = function() {
     var bookName, chapterNumber, verseNumber;
-    bookName = books[this.book].names[0];
+    bookName = books[this.book-1].names[0];
     chapterNumber = this.chapter;
     verseNumber = this.verse;
     return "" + bookName + " " + chapterNumber + ":" + verseNumber;
